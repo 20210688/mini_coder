@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:mini_coder/firebase_functions.dart';
 import 'package:mini_coder/login/sign%20up.dart';
+import 'package:mini_coder/welcome/welcome_screen%201.dart';
 
 class SignInScreen extends StatefulWidget {
   static const String routeName = 'Login';
@@ -12,6 +14,8 @@ class SignInScreen extends StatefulWidget {
 
 class _SignInScreenState extends State<SignInScreen> {
   final _formSignInKey = GlobalKey<FormState>();
+  var passwordController=TextEditingController();
+  var emailController=TextEditingController();
   bool rememberPassword = true;
 
   @override
@@ -79,6 +83,8 @@ class _SignInScreenState extends State<SignInScreen> {
                                 }
                                 return null;
                               },
+                              controller: emailController,
+                              keyboardType: TextInputType.emailAddress,
                               decoration: InputDecoration(
                                 label: const Text('Email'),
                                 hintText: 'Enter Email',
@@ -113,6 +119,7 @@ class _SignInScreenState extends State<SignInScreen> {
                                 }
                                 return null;
                               },
+                              controller: passwordController,
                               decoration: InputDecoration(
                                 label: const Text('Password'),
                                 hintText: 'Enter Password',
@@ -158,19 +165,18 @@ class _SignInScreenState extends State<SignInScreen> {
                                     ),
                                   ],
                                 ),
-                                GestureDetector(
-                                  onTap: () {
-                                    // Handle forgot password logic here
-                                  },
-                                  child: const Text(
-                                    'Forgot Password?',
-                                    style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black,
-                                    ),
-                                  ),
-                                ),
+                               // GestureDetector(
+                                 // onTap: () {
+                                 // },
+                                 // child: const Text(
+                                   // 'Forgot Password?',
+                                   // style: TextStyle(
+                                     // fontSize: 16,
+                                     // fontWeight: FontWeight.bold,
+                                     // color: Colors.black,
+                                   // ),
+                                 // ),
+                               // ),
                               ],
                             ),
                             const SizedBox(height: 20),
@@ -178,6 +184,36 @@ class _SignInScreenState extends State<SignInScreen> {
                               width: double.infinity,
                               child: ElevatedButton(
                                 onPressed: () {
+                                  FirebaseFunctions.loginUser(emailController.text,
+                                      passwordController.text,
+                                  onSuccess: (Lable){
+                                    Navigator.pushNamed(context,WelcomeScreen1.routeName,
+                                    arguments: Lable);
+                                  },
+                                    onError: (error){
+                                    showDialog(context: context,
+                                        builder: (context)=>AlertDialog(
+                                          title: Text("Error",style:
+                                          TextStyle(fontSize: 25,
+                                              fontWeight: FontWeight.bold,
+                                          color: Colors.green),
+                                          ),
+                                          content: Text("Check email or password",
+                                          style: TextStyle(fontSize: 20,color:Colors.black),),
+                                          actions: [
+                                            ElevatedButton(onPressed: (){
+                                              Navigator.pop(context);
+                                            },
+                                                child: Text("Okay!!",
+                                                  style:
+                                                  TextStyle(fontSize: 20,
+                                                      fontWeight: FontWeight.bold,
+                                                      color: Colors.green),
+                                                )),
+                                          ],
+                                        ));
+                                    }
+                                  );
                                   if (_formSignInKey.currentState!.validate() && rememberPassword) {
                                     ScaffoldMessenger.of(context).showSnackBar(
                                       const SnackBar(content: Text('Processing Data')),

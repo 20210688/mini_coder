@@ -1,18 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:mini_coder/firebase_functions.dart';
 import 'package:mini_coder/login/login.dart';
 
 class SignUpScreen extends StatefulWidget {
   static const String routeName = 'Sign up';
 
-  const SignUpScreen({super.key});
+   SignUpScreen({super.key}) ;
 
   @override
   State<StatefulWidget> createState() => _SignUpScreenState();
 }
 
 class _SignUpScreenState extends State<SignUpScreen> {
-  final _formSignupKey = GlobalKey<FormState>();
-  bool agreePersonalData = true;
+   final _formSignupKey = GlobalKey<FormState>();
+  var fullNameController=TextEditingController();
+  var emailController=TextEditingController();
+  var passwordController=TextEditingController();
+  var ageController=TextEditingController();
+
+
+   bool agreePersonalData = true;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -97,6 +104,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               }
                               return null;
                             },
+                           controller: fullNameController,
                             decoration: InputDecoration(
                               label: const Text('Full Name'),
                               hintText: 'Enter Full Name',
@@ -121,7 +129,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               ),
                             ),
                           ),
-                          const SizedBox(
+                           SizedBox(
                             height: 25.0,
                           ),
                           TextFormField(
@@ -131,6 +139,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               }
                               return null;
                             },
+                            controller: emailController ,
+                            keyboardType: TextInputType.emailAddress,
                             decoration: InputDecoration(
                               label: const Text('Email'),
                               hintText: 'Enter Email',
@@ -167,6 +177,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               }
                               return null;
                             },
+                            controller: passwordController,
                             decoration: InputDecoration(
                               label: const Text('Password'),
                               hintText: 'Enter Password',
@@ -201,6 +212,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               }
                               return null;
                             },
+                            controller: ageController,
+                            keyboardType: TextInputType.number,
                             decoration: InputDecoration(
                               label: const Text('Age'),
                               hintText: 'Enter Age',
@@ -260,8 +273,15 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           // signup button
                           SizedBox(
                             width: double.infinity,
-                            child: ElevatedButton(
+                            child:  ElevatedButton(
                               onPressed: () {
+                            FirebaseFunctions.createAccountAuth(emailController.text,
+                            passwordController.text,
+                              fullNameController.text,int.parse(ageController.text),
+                                onSuccess: (){
+                              Navigator.pushNamed(context,SignInScreen.routeName);
+                            },
+                            );
                                 if (_formSignupKey.currentState!.validate() &&
                                     agreePersonalData) {
                                   ScaffoldMessenger.of(context).showSnackBar(
@@ -278,15 +298,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                 }
                               },
                               style: ElevatedButton.styleFrom(
-                                backgroundColor: const Color(0xFF2AAA8A),
+                             backgroundColor: const Color(0xFF2AAA8A),
                               ),
                               child: const Text('Sign up',
-                        style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                        ),
-
+                             style: TextStyle(
+                            color: Colors.white,
+                               fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                             ),
                               ),
                             ),
                           ),
