@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "154330034376",
+    "project_id": "mini-coder-3fb63",
+    "storage_bucket": "mini-coder-3fb63.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:154330034376:android:01926e5626a98b4ed4b5fd",
+        "android_client_info": {
+          "package_name": "com.example.mini_coder"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCZN_VrqaxsFXJOqhv5CTDJsbE28BiMXds"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
