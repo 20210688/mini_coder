@@ -5,6 +5,11 @@ import 'package:mini_coder/levels/player.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 
+import '../BottomNavBar.dart';
+import '../home/home_screen.dart';
+import '../home/profile_screen.dart';
+import '../home/setting_screen.dart';
+
 abstract class VideoState {}
 
 class VideosInitial extends VideoState {}
@@ -46,6 +51,19 @@ class LevelzeroVideos extends StatelessWidget {
     return BlocProvider(
       create: (context) => VideoCubit(),
       child: Scaffold(
+        bottomNavigationBar: BottomNavBar(
+          selectedIndex: 0, // Set the initial selected index
+          onTap: (index) {
+            // Handle navigation based on the selected index
+            if (index == 0) {
+              Navigator.pushReplacementNamed(context, HomePage.routeName);
+            } else if (index == 1) {
+              Navigator.pushReplacementNamed(context, profile_screen.routeName);
+            } else if (index == 2) {
+              Navigator.pushReplacementNamed(context, setting_screen.routeName);
+            }
+          },
+        ),
         appBar: AppBar(
           title: const Text('Level Zero Videos'),
           centerTitle: true,
