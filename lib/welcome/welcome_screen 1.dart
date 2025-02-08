@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:mini_coder/welcome/welcome_screen%202.dart';
 
@@ -17,7 +16,6 @@ class WelcomeScreen1 extends StatelessWidget {
             Positioned.fill(
               child: Image.asset(
                 'assets/images/Vector3.png',
-
               ),
             ),
             Positioned(
@@ -34,15 +32,3 @@ class WelcomeScreen1 extends StatelessWidget {
     );
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
