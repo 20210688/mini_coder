@@ -1,6 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:mini_coder/Profile_Screen/profile_screen/Edit_profile.dart';
+import 'package:mini_coder/Profile_Screen/profile_screen/Progress.dart';
 import 'package:mini_coder/Profile_Screen/profile_screen.dart';
+import 'package:mini_coder/Profile_Screen/profile_screen/Tests/tests.dart';
 import 'package:mini_coder/Setting_Screen/setting_screen.dart';
 import 'package:mini_coder/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -35,6 +38,9 @@ class MyApp extends StatelessWidget {
         WelcomeScreen2.routeName: (context) => WelcomeScreen2(),
         ProfileScreen.routeName: (context) => ProfileScreen(),
         SettingScreen.routeName: (context) => SettingScreen(),
+        ProgressScreen.routeName:(context) => ProgressScreen(),
+        EditProfile.routeName:(context) => EditProfile(),
+        Tests.routeName:(context) => Tests(),
       },
     );
   }
