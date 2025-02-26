@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mini_coder/Setting_Screen/rating_dialog.dart';
+import 'package:mini_coder/Setting_Screen/report_dialog.dart';
 
 
 class  SettingScreen extends StatelessWidget {
@@ -40,7 +41,12 @@ class  SettingScreen extends StatelessWidget {
                     icon: Icons.bug_report,
 
                     text: "Report A Bug",
-                    onTap: () {},
+                    onTap: () {
+                      showDialog(
+                        context: context,
+                        builder: (context) => const IssueReportDialog(),
+                      );
+                    },
                   ),
                   SettingsButton(
                     icon: Icons.send,
@@ -103,7 +109,7 @@ class SettingsButton extends StatelessWidget {
         borderRadius: BorderRadius.circular(20),
         child: Container(
           decoration: BoxDecoration(
-            color: Colors.teal,
+              color: Color(0xFF2AAA8A),
             borderRadius: BorderRadius.circular(20),
           ),
           padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 20),

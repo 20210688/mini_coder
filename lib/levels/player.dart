@@ -11,7 +11,7 @@ class PlayerState {
   const PlayerState({
     required this.videoId,
     this.autoPlay = true,
-    this.mute = true,
+    this.mute = false,
   });
 }
 
