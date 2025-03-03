@@ -206,6 +206,7 @@ class _EditProfileState extends State<EditProfile> {
                                         borderRadius: BorderRadius.circular(10),
                                       ),
                                     ),
+
                                     child: const Text(
                                       'Save Changes',
                                       style: TextStyle(
