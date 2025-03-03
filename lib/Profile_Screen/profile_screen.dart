@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mini_coder/Profile_Screen/profile_screen/Edit_profile.dart';
 import 'package:mini_coder/Profile_Screen/profile_screen/Progress.dart';
 import 'package:mini_coder/Profile_Screen/profile_screen/Tests/tests.dart';
+import 'package:mini_coder/home/home_screen.dart';
 
 class ProfileScreen extends StatelessWidget {
   static const String routeName = 'profile_screen';
@@ -15,6 +16,21 @@ class ProfileScreen extends StatelessWidget {
       body: Stack(
         clipBehavior: Clip.none,
         children: [
+          Positioned(
+            top: 40,
+            left: 20,
+            child: GestureDetector(
+              onTap: () {
+                Navigator.pushReplacement(
+                    context, MaterialPageRoute(builder: (context) => HomeScreen()));
+              },
+              child: const Icon(
+                Icons.arrow_back,
+                color: Colors.black,
+                size: 25,
+              ),
+            ),
+          ),
           Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
@@ -42,7 +58,7 @@ class ProfileScreen extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
                                 Text(
-                                  'User Name',
+                                  'Full Name',
                                   style: TextStyle(
                                     fontSize: 24,
                                     fontWeight: FontWeight.bold,
@@ -51,7 +67,15 @@ class ProfileScreen extends StatelessWidget {
                                 ),
                                 const SizedBox(height: 10),
                                 Text(
-                                  'Joined DD/MM/YY',
+                                  'Email',
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    color: Colors.grey,
+                                  ),
+                                ),
+                                const SizedBox(height: 10),
+                                Text(
+                                  'Password',
                                   style: TextStyle(
                                     fontSize: 16,
                                     color: Colors.grey,
@@ -60,14 +84,6 @@ class ProfileScreen extends StatelessWidget {
                                 const SizedBox(height: 10),
                                 Text(
                                   'Age',
-                                  style: TextStyle(
-                                    fontSize: 16,
-                                    color: Colors.grey,
-                                  ),
-                                ),
-                                const SizedBox(height: 10),
-                                Text(
-                                  'Date Of Birth',
                                   style: TextStyle(
                                     fontSize: 16,
                                     color: Colors.grey,
@@ -85,7 +101,7 @@ class ProfileScreen extends StatelessWidget {
                                   decoration: BoxDecoration(
                                     color: Color(0xFF2AAA8A),
                                     borderRadius: BorderRadius.circular(
-                                        20), // Border radius applied to the entire row
+                                        20),
                                   ),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.min,
@@ -157,7 +173,7 @@ class ProfileScreen extends StatelessWidget {
                                   decoration: BoxDecoration(
                                     color: Color(0xFF2AAA8A),
                                     borderRadius: BorderRadius.circular(
-                                        20), // Border radius applied to the entire row
+                                        20),
                                   ),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.min,
@@ -199,7 +215,7 @@ class ProfileScreen extends StatelessWidget {
           ),
           Positioned(
             top: MediaQuery.of(context).size.height / 3 - 70,
-            left: MediaQuery.of(context).size.width / 3 - 70,
+            left: MediaQuery.of(context).size.width / 2 - 65,
             child: CircleAvatar(
               radius: 65,
               backgroundImage: AssetImage('assets/images/Vector (2).png'),
@@ -207,7 +223,7 @@ class ProfileScreen extends StatelessWidget {
           ),
           Positioned(
             top: MediaQuery.of(context).size.height / 3 + 20,
-            left: MediaQuery.of(context).size.width / 3 + 20,
+            left: MediaQuery.of(context).size.width / 2 + 20,
             child: CircleAvatar(
               radius: 15,
               backgroundColor: Colors.white,
