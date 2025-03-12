@@ -1,13 +1,63 @@
+
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:mini_coder/Profile_Screen/profile_screen/Edit_profile.dart';
 import 'package:mini_coder/Profile_Screen/profile_screen/Progress.dart';
 import 'package:mini_coder/Profile_Screen/profile_screen/Tests/tests.dart';
 import 'package:mini_coder/home/home_screen.dart';
 
-class ProfileScreen extends StatelessWidget {
+class ProfileScreen extends StatefulWidget {
   static const String routeName = 'profile_screen';
 
-  const ProfileScreen({Key? key}) : super(key: key);
+  const ProfileScreen({super.key});
+
+  @override
+  _ProfileScreenState createState() => _ProfileScreenState();
+}
+
+class _ProfileScreenState extends State<ProfileScreen> {
+  final _formKey = GlobalKey<FormState>();
+  final TextEditingController _fullNameController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _ageController = TextEditingController();
+  final TextEditingController _joinedController = TextEditingController();
+
+
+  @override
+  void initState() {
+    super.initState();
+    _loadUserData();
+  }
+
+  @override
+  void dispose() {
+    _fullNameController.dispose();
+    _emailController.dispose();
+    _ageController.dispose();
+    _joinedController.dispose();
+    super.dispose();
+  }
+  Future<void> _loadUserData() async {
+    User? user = FirebaseAuth.instance.currentUser;
+    if (user != null) {
+      DocumentSnapshot userDoc =
+      await FirebaseFirestore.instance.collection('users').doc(user.uid).get();
+
+      if (userDoc.exists) {
+        Map<String, dynamic>? data = userDoc.data() as Map<String, dynamic>?;
+
+        setState(() {
+          _fullNameController.text = data?['FullName'] ?? user.displayName ?? '';
+          _emailController.text = user.email ?? '';
+          _ageController.text = data?['Age']?.toString() ?? '';
+          _joinedController.text = data?['joined_date'] ?? 'Unknown';
+        });
+      } else {
+        debugPrint("User document does not exist.");
+      }
+    }
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -52,12 +102,14 @@ class ProfileScreen extends StatelessWidget {
                         children: [
                           const SizedBox(height: 80),
                           Center(
-                            child: Column(
+                            child: Form(
+                              key: _formKey,
+                              child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
                                 Text(
-                                  'Full Name',
+                                  _fullNameController.text.isNotEmpty ? _fullNameController.text : 'Full Name',
                                   style: TextStyle(
                                     fontSize: 24,
                                     fontWeight: FontWeight.bold,
@@ -66,7 +118,7 @@ class ProfileScreen extends StatelessWidget {
                                 ),
                                 const SizedBox(height: 10),
                                 Text(
-                                  'Email',
+                                  _emailController.text.isNotEmpty ? _emailController.text : 'Email',
                                   style: TextStyle(
                                     fontSize: 16,
                                     color: Colors.grey,
@@ -74,7 +126,7 @@ class ProfileScreen extends StatelessWidget {
                                 ),
                                 const SizedBox(height: 10),
                                 Text(
-                                  'Password',
+                                  _ageController.text.isNotEmpty ? 'Age: ${_ageController.text}' : 'Age: Unknown',
                                   style: TextStyle(
                                     fontSize: 16,
                                     color: Colors.grey,
@@ -82,7 +134,7 @@ class ProfileScreen extends StatelessWidget {
                                 ),
                                 const SizedBox(height: 10),
                                 Text(
-                                  'Age',
+                                  _joinedController.text.isNotEmpty ? 'Joined: ${_joinedController.text}' : 'Joined: Unknown',
                                   style: TextStyle(
                                     fontSize: 16,
                                     color: Colors.grey,
@@ -204,6 +256,7 @@ class ProfileScreen extends StatelessWidget {
                               ],
                             ),
                           ),
+                          ),
                         ],
                       ),
                     ),
@@ -237,3 +290,4 @@ class ProfileScreen extends StatelessWidget {
     );
   }
 }
+
