@@ -270,7 +270,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             left: MediaQuery.of(context).size.width / 2 - 65,
             child: CircleAvatar(
               radius: 65,
-              backgroundImage: AssetImage('assets/images/Vector (2).png'),
+              backgroundImage: AssetImage('assets/images/Vector 33.png'),
             ),
           ),
           Positioned(

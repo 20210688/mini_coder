@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:mini_coder/Profile_Screen/profile_screen.dart';
 
 class EditProfile extends StatefulWidget {
+
   static const String routeName = 'edit profile';
 
   const EditProfile({super.key});
@@ -233,12 +234,13 @@ class _EditProfileState extends State<EditProfile> {
             left: MediaQuery.of(context).size.width / 2 - 65,
             child: const CircleAvatar(
               radius: 65,
-              backgroundImage: AssetImage('assets/images/Vector (2).png'),
+              backgroundImage: AssetImage('assets/images/Vector 33.png'),
             ),
           ),
           Positioned(
-            top: MediaQuery.of(context).size.height / 3 + 20,
-            left: MediaQuery.of(context).size.width / 2 + 20,
+            top: MediaQuery.of(context).size.height / 3 + 20 ,
+            left: MediaQuery.of(context).size.width /  2 + 20 ,
+
             child: const CircleAvatar(
               radius: 15,
               backgroundColor: Colors.white,
