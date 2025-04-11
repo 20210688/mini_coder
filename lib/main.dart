@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:mini_coder/Profile_Screen/profile_screen/Edit_profile.dart';
 import 'package:mini_coder/Profile_Screen/profile_screen/Progress.dart';
 import 'package:mini_coder/Profile_Screen/profile_screen.dart';
-import 'package:mini_coder/Profile_Screen/profile_screen/Tests/tests.dart';
 import 'package:mini_coder/Setting_Screen/setting_screen.dart';
 import 'package:mini_coder/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -12,6 +11,9 @@ import 'package:mini_coder/login/login.dart';
 import 'package:mini_coder/login/sign%20up.dart';
 import 'package:mini_coder/welcome/welcome_screen%201.dart';
 import 'package:mini_coder/welcome/welcome_screen%202.dart';
+
+import 'Profile_Screen/profile_screen/tests/Screens/tests.dart';
+
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -40,7 +42,7 @@ class MyApp extends StatelessWidget {
         SettingScreen.routeName: (context) => SettingScreen(),
         ProgressScreen.routeName:(context) => ProgressScreen(),
         EditProfile.routeName:(context) => EditProfile(),
-        Tests.routeName:(context) => Tests(),
+        Tests.routeName:(context) =>  Tests(),
       },
     );
   }
