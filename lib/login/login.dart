@@ -120,6 +120,7 @@ class _SignInScreenState extends State<SignInScreen> {
                                 }
                                 return null;
                               },
+
                               controller: passwordController,
                               decoration: InputDecoration(
                                 label: const Text('Password'),

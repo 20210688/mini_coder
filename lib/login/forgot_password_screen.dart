@@ -260,6 +260,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                     fit: BoxFit.fill,
                   ),
                 ),
+
                 SizedBox(height: 30),
                 Text(
                   'Enter your email to send a reset link.',
