@@ -8,6 +8,7 @@ import 'package:mini_coder/Setting_Screen/setting_screen.dart';
 import 'package:mini_coder/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:mini_coder/home/home_screen.dart';
+import 'package:mini_coder/login/forgot_password_screen.dart';
 import 'package:mini_coder/login/login.dart';
 import 'package:mini_coder/login/sign%20up.dart';
 import 'package:mini_coder/welcome/welcome_screen%201.dart';
@@ -41,6 +42,7 @@ class MyApp extends StatelessWidget {
         ProgressScreen.routeName:(context) => ProgressScreen(),
         EditProfile.routeName:(context) => EditProfile(),
         Tests.routeName:(context) => Tests(),
+        ForgotPasswordScreen.routeName:(context) => ForgotPasswordScreen(),
       },
     );
   }

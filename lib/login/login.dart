@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mini_coder/firebase_functions.dart';
+import 'package:mini_coder/login/forgot_password_screen.dart';
 import 'package:mini_coder/login/sign%20up.dart';
 import 'package:mini_coder/welcome/welcome_screen%201.dart';
 
@@ -165,18 +166,21 @@ class _SignInScreenState extends State<SignInScreen> {
                                     ),
                                   ],
                                 ),
-                               // GestureDetector(
-                                 // onTap: () {
-                                 // },
-                                 // child: const Text(
-                                   // 'Forgot Password?',
-                                   // style: TextStyle(
-                                     // fontSize: 16,
-                                     // fontWeight: FontWeight.bold,
-                                     // color: Colors.black,
-                                   // ),
-                                 // ),
-                               // ),
+                               GestureDetector(
+                                 onTap: () {
+                                   Navigator.pushNamed(context, ForgotPasswordScreen.routeName);
+
+
+                                 },
+                                  child: const Text(
+                                    'Forgot Password?',
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.black,
+                                    ),
+                                  ),
+                                ),
                               ],
                             ),
                             const SizedBox(height: 20),
