@@ -7,11 +7,13 @@ class PlayerState {
   final String videoId;
   final bool autoPlay;
   final bool mute;
+  final bool enableCaption;
 
   const PlayerState({
     required this.videoId,
     this.autoPlay = true,
     this.mute = false,
+    this.enableCaption = true,
   });
 }
 
@@ -41,6 +43,7 @@ class _PlayerScreenState extends State<PlayerScreen> {
       flags: YoutubePlayerFlags(
         autoPlay: _cubit.state.autoPlay,
         mute: _cubit.state.mute,
+
       ),
     );
   }

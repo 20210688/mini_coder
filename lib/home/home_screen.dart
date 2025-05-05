@@ -3,6 +3,8 @@ import 'package:mini_coder/Profile_Screen/profile_screen.dart';
 import 'package:mini_coder/Setting_Screen/setting_screen.dart';
 import 'package:mini_coder/levels/levelzero_videos.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
+import '../levels/levelone_videos.dart';
+import '../levels/leveltwo_videos.dart';
 
 void main() {
   runApp(HomeScreen());
@@ -47,7 +49,10 @@ class _HomeScreenState extends State<HomeScreen> {
           });
         },
         children: <Widget>[
-          HomePage(), // Fixed: HomePage() instead of HomeScreen()
+          HomePage(
+            isQuestionsFinished: false, // Replace with actual value or variable
+            isQuestions1Finished: false, // Replace with actual value or variable
+          ), // Fixed: HomePage() instead of HomeScreen()
           ProfileScreen(),
           SettingScreen(),
         ],
@@ -80,13 +85,22 @@ class _HomeScreenState extends State<HomeScreen> {
 
 // Home Page Content
 class HomePage extends StatelessWidget {
+  final bool isQuestionsFinished;
+  final bool isQuestions1Finished;
+
+  const HomePage({
+    Key? key,
+    required this.isQuestionsFinished,
+    required this.isQuestions1Finished,
+  }) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Mini Coder'),
+        title: const Text('Mini Coder'),
         centerTitle: true,
-        backgroundColor: Color(0xFF2AAA8A),
+        backgroundColor: const Color(0xFF2AAA8A),
       ),
       body: Column(
         children: [
@@ -94,14 +108,36 @@ class HomePage extends StatelessWidget {
             child: ListView.builder(
               itemCount: 3,
               itemBuilder: (context, index) {
-                bool isLocked = index != 0;
+                bool isLocked = true;
+
+                if (index == 1) {
+                  isLocked = !isQuestionsFinished;
+                } else if (index == 2) {
+                  isLocked = !isQuestions1Finished;
+                }
+
                 return GestureDetector(
                   onTap: () {
                     if (index == 0) {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const LevelzeroVideos()),
+                          builder: (context) => const LevelzeroVideos(),
+                        ),
+                      );
+                    } else if (index == 1 ) {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const LevelOneVideos(),
+                        ),
+                      );
+                    } else if (index == 2 ) {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const LevelTwoVideos(),
+                        ),
                       );
                     } else {
                       ScaffoldMessenger.of(context).showSnackBar(
@@ -114,19 +150,22 @@ class HomePage extends StatelessWidget {
                     child: Center(
                       child: CircleAvatar(
                         radius: 80,
-                        backgroundColor: Color(0xFF2AAA8A),
+                        backgroundColor: const Color(0xFF2AAA8A),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
                               'Level $index',
-                              style: TextStyle(
-                                  fontSize: 25,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black),
+                              style: const TextStyle(
+                                fontSize: 25,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black,
+                              ),
                             ),
-                            Icon(isLocked ? Icons.lock : Icons.lock_open,
-                                color: Colors.black),
+                            Icon(
+                                Icons.lock_open,
+                              color: Colors.black,
+                            ),
                           ],
                         ),
                       ),
@@ -141,3 +180,6 @@ class HomePage extends StatelessWidget {
     );
   }
 }
+
+
+
