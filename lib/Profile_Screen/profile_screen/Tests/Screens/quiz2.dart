@@ -14,7 +14,7 @@ class QuizScreen2 extends StatefulWidget {
 }
 
 class _QuizScreenState extends State<QuizScreen2> {
-  final QuizLogic quizLogic = QuizLogic(); 
+  final QuizLogic quizLogic = QuizLogic();
 
   @override
   Widget build(BuildContext context) {
@@ -33,25 +33,21 @@ class _QuizScreenState extends State<QuizScreen2> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             const SizedBox(height: 10),
-           
             QuestionsCounter(
               currentIndex: quizLogic.currentIndex,
               totalQuestions: questions2.length,
             ),
             const SizedBox(height: 23),
-            
             Text(
-              questions2[quizLogic.currentIndex]
-                  ["question"], 
+              questions2[quizLogic.currentIndex]["question"],
               style: const TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
-                color:Colors.black ,
+                color: Colors.black,
               ),
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 30),
-           
             Column(
               children: [
                 Options(
@@ -67,7 +63,6 @@ class _QuizScreenState extends State<QuizScreen2> {
               ],
             ),
             const Spacer(),
-            
             Align(
               alignment: Alignment.bottomCenter,
               child: Padding(
@@ -76,13 +71,10 @@ class _QuizScreenState extends State<QuizScreen2> {
                   onPressed: () {
                     if (quizLogic.selectedAnswer != null) {
                       setState(() {
-                        
-                        quizLogic.checkAnswer(
-                            questions2[quizLogic.currentIndex]["correctAnswer"]);
+                        quizLogic.checkAnswer(questions2[quizLogic.currentIndex]
+                            ["correctAnswer"]);
 
-                        
                         if (quizLogic.currentIndex == questions2.length - 1) {
-                         
                           Navigator.push(
                             context,
                             MaterialPageRoute(
@@ -92,6 +84,7 @@ class _QuizScreenState extends State<QuizScreen2> {
                                 result:
                                     questions2.length - quizLogic.wrongAnswer,
                                 totalOfQuestions: questions2.length,
+                                quizIndex: 2,
                                 onReset: () {
                                   setState(() {
                                     quizLogic.resetQuiz();
@@ -101,7 +94,6 @@ class _QuizScreenState extends State<QuizScreen2> {
                             ),
                           );
                         } else {
-                          
                           quizLogic.nextQuestion(questions2.length);
                         }
                       });

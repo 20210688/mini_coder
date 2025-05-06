@@ -15,12 +15,12 @@ class QuizScreen1 extends StatefulWidget {
 }
 
 class _QuizScreenState extends State<QuizScreen1> {
-  final QuizLogic quizLogic = QuizLogic(); 
+  final QuizLogic quizLogic = QuizLogic();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFCCF4E6) ,
+      backgroundColor: const Color(0xFFCCF4E6),
       appBar: AppBar(
         backgroundColor: const Color(0xFF2AAA8A),
         title: const Text(
@@ -34,16 +34,13 @@ class _QuizScreenState extends State<QuizScreen1> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             const SizedBox(height: 10),
-           
             QuestionsCounter(
               currentIndex: quizLogic.currentIndex,
               totalQuestions: questions1.length,
             ),
             const SizedBox(height: 23),
-            
             Text(
-              questions1[quizLogic.currentIndex]
-                  ["question"], 
+              questions1[quizLogic.currentIndex]["question"],
               style: const TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
@@ -52,7 +49,6 @@ class _QuizScreenState extends State<QuizScreen1> {
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 30),
-           
             Column(
               children: [
                 Options(
@@ -68,7 +64,6 @@ class _QuizScreenState extends State<QuizScreen1> {
               ],
             ),
             const Spacer(),
-            
             Align(
               alignment: Alignment.bottomCenter,
               child: Padding(
@@ -77,13 +72,10 @@ class _QuizScreenState extends State<QuizScreen1> {
                   onPressed: () {
                     if (quizLogic.selectedAnswer != null) {
                       setState(() {
-                        
-                        quizLogic.checkAnswer(
-                            questions1[quizLogic.currentIndex]["correctAnswer"]);
+                        quizLogic.checkAnswer(questions1[quizLogic.currentIndex]
+                            ["correctAnswer"]);
 
-                        
                         if (quizLogic.currentIndex == questions1.length - 1) {
-                         
                           Navigator.push(
                             context,
                             MaterialPageRoute(
@@ -93,6 +85,7 @@ class _QuizScreenState extends State<QuizScreen1> {
                                 result:
                                     questions1.length - quizLogic.wrongAnswer,
                                 totalOfQuestions: questions1.length,
+                                quizIndex: 1,
                                 onReset: () {
                                   setState(() {
                                     quizLogic.resetQuiz();
@@ -102,7 +95,6 @@ class _QuizScreenState extends State<QuizScreen1> {
                             ),
                           );
                         } else {
-                          
                           quizLogic.nextQuestion(questions1.length);
                         }
                       });

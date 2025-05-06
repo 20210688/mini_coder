@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:mini_coder/Profile_Screen/profile_screen.dart';
 import 'package:mini_coder/Profile_Screen/profile_screen/tests/Screens/quiz.dart';
 import 'package:mini_coder/Profile_Screen/profile_screen/tests/Screens/quiz1.dart';
 import 'package:mini_coder/Profile_Screen/profile_screen/tests/Screens/quiz2.dart';
-
-
 
 class Tests extends StatelessWidget {
   static String routeName = "Tests";
@@ -17,19 +16,45 @@ class Tests extends StatelessWidget {
       home: Scaffold(
         appBar: AppBar(
           backgroundColor: Color(0xFF2AAA8A),
+          leading: IconButton(
+            icon: Icon(
+              Icons.arrow_back,
+              color: Colors.black,
+              size: 25,
+            ),
+            onPressed: () {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const ProfileScreen(),
+                ),
+              );
+            },
+          ),
+          title: const Text(
+            "Tests",
+            style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+          ),
+        ),
+
+        /*
+        appBar: AppBar(
+          backgroundColor: Color(0xFF2AAA8A),
           title: const Text(" tests",
               style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold)),
         ),
+
+         */
+
         backgroundColor: Colors.white,
         body: Column(
           children: [
             const Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-
                 Center(
                   child: Padding(
-                    padding:  EdgeInsets.all(20),
+                    padding: EdgeInsets.all(20),
                     child: Text(
                       "test your knowledge",
                       style: TextStyle(fontSize: 22, color: Colors.black),
@@ -39,23 +64,21 @@ class Tests extends StatelessWidget {
                 ),
               ],
             ),
-             Spacer(),
+            Spacer(),
             Align(
               alignment: Alignment.bottomCenter,
               child: Padding(
                 padding: const EdgeInsets.only(bottom: 100),
                 child: ElevatedButton(
                   style: ButtonStyle(
-                    backgroundColor: WidgetStateProperty.all<Color>(
-                        const Color(0xFF2AAA8A)),
+                    backgroundColor:
+                        WidgetStateProperty.all<Color>(const Color(0xFF2AAA8A)),
                     padding: WidgetStateProperty.all<EdgeInsets>(
                       const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
                     ),
-
                     elevation: WidgetStateProperty.all<double>(20),
                     shadowColor: WidgetStateProperty.all<Color>(
                         Colors.black.withOpacity(0.9)),
-
                     shape: WidgetStateProperty.all<RoundedRectangleBorder>(
                       RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20),
@@ -80,7 +103,6 @@ class Tests extends StatelessWidget {
                         fontWeight: FontWeight.bold),
                   ),
                 ),
-
               ),
             ),
             Align(
@@ -89,16 +111,14 @@ class Tests extends StatelessWidget {
                 padding: const EdgeInsets.only(bottom: 100),
                 child: ElevatedButton(
                   style: ButtonStyle(
-                    backgroundColor: WidgetStateProperty.all<Color>(
-                        const Color(0xFF2AAA8A)),
+                    backgroundColor:
+                        WidgetStateProperty.all<Color>(const Color(0xFF2AAA8A)),
                     padding: WidgetStateProperty.all<EdgeInsets>(
                       const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
                     ),
-
                     elevation: WidgetStateProperty.all<double>(20),
                     shadowColor: WidgetStateProperty.all<Color>(
                         Colors.black.withOpacity(0.9)),
-
                     shape: WidgetStateProperty.all<RoundedRectangleBorder>(
                       RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20),
@@ -123,24 +143,22 @@ class Tests extends StatelessWidget {
                         fontWeight: FontWeight.bold),
                   ),
                 ),
-
               ),
-            ), Align(
+            ),
+            Align(
               alignment: Alignment.bottomCenter,
               child: Padding(
                 padding: const EdgeInsets.only(bottom: 100),
                 child: ElevatedButton(
                   style: ButtonStyle(
-                    backgroundColor: WidgetStateProperty.all<Color>(
-                        const Color(0xFF2AAA8A)),
+                    backgroundColor:
+                        WidgetStateProperty.all<Color>(const Color(0xFF2AAA8A)),
                     padding: WidgetStateProperty.all<EdgeInsets>(
                       const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
                     ),
-
                     elevation: WidgetStateProperty.all<double>(20),
                     shadowColor: WidgetStateProperty.all<Color>(
                         Colors.black.withOpacity(0.9)),
-
                     shape: WidgetStateProperty.all<RoundedRectangleBorder>(
                       RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20),
@@ -165,10 +183,8 @@ class Tests extends StatelessWidget {
                         fontWeight: FontWeight.bold),
                   ),
                 ),
-
               ),
             ),
-
           ],
         ),
       ),
