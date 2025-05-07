@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:mini_coder/Profile_Screen/profile_screen/Edit_profile.dart';
 import 'package:mini_coder/Profile_Screen/profile_screen/Progress.dart';
 import 'package:mini_coder/Profile_Screen/profile_screen.dart';
+import 'package:mini_coder/Setting_Screen/noti_service.dart';
 import 'package:mini_coder/Setting_Screen/setting_screen.dart';
 import 'package:mini_coder/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -15,12 +16,21 @@ import 'package:mini_coder/welcome/welcome_screen%202.dart';
 
 import 'Profile_Screen/profile_screen/tests/Screens/tests.dart';
 
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+
   await FirebaseFirestore.instance.enableNetwork();
+  WidgetsFlutterBinding.ensureInitialized();
+  NotiService().initNotification();
+
+  // Initialize notifications before running the app
+
+
   runApp(const MyApp());
 }
 
