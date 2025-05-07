@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:mini_coder/Setting_Screen/noti_service.dart';
 import 'package:mini_coder/Setting_Screen/rating_dialog.dart';
 import 'package:mini_coder/Setting_Screen/report_dialog.dart';
+
+
 
 
 class  SettingScreen extends StatelessWidget {
@@ -25,10 +28,16 @@ class  SettingScreen extends StatelessWidget {
                 children: [
                   const SectionTitle("GENERAL"),
                   SettingsButton(
-                    icon: Icons.notifications,
 
-                    text: "Notifications",
-                    onTap: () {},
+                      icon: Icons.notifications,
+                      text: "Notifications ()",
+                      onTap: () {NotiService().showNotification(
+                        title:"Mini coder",
+                        body:"time to learn new things "
+                      );
+
+                      },
+
                   ),
                   SettingsButton(
                     icon: Icons.logout,
@@ -72,7 +81,7 @@ class  SettingScreen extends StatelessWidget {
           ],
         ),
       ),
-      
+
     );
   }
 }
