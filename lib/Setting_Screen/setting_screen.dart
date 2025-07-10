@@ -3,6 +3,8 @@ import 'package:mini_coder/Setting_Screen/noti_service.dart';
 import 'package:mini_coder/Setting_Screen/rating_dialog.dart';
 import 'package:mini_coder/Setting_Screen/report_dialog.dart';
 
+import 'logout_dialog.dart';
+
 
 
 
@@ -43,7 +45,10 @@ class  SettingScreen extends StatelessWidget {
                     icon: Icons.logout,
 
                     text: "Log Out",
-                    onTap: () {},
+                    onTap: () { showDialog(
+                      context: context,
+                      builder: (context) => const LogoutDialog(),
+                    );},
                   ),
                   const SectionTitle("FEEDBACK"),
                   SettingsButton(
